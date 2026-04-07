@@ -1,0 +1,21 @@
+{
+	"name": "infinity-scroll-backend",
+	"version": "1.0.0",
+	"main": "dist/index.js",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"build": "tsc src/index.ts --outDir dist",
+		"start": "node dist/index.js"
+	},
+	"dependencies": {
+		"cors": "^2.8.6",
+		"express": "^5.2.1"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.19",
+		"@types/express": "^5.0.6",
+		"tsx": "^4.21.0",
+		"typescript": "^6.0.2"
+	}
+}
