@@ -54,35 +54,35 @@ class MemoryStore {
 		return items.sort((a, b) => a.order - b.order)
 	}
 
-	private getCursoredItems(
+	private getSkippedItems(
 		filter: string,
-		cursor: number,
+		skip: number,
 		limit: number,
 		selected: boolean,
 	) {
-		let slicedItems = this.getAllItems().slice(cursor)
+		let slicedItems = this.getAllItems().slice(skip)
 		if (selected) slicedItems = this.getSortOrderedItems(slicedItems)
 
 		const items = []
 
 		for (const item of slicedItems) {
-			cursor++
+			skip++
 			if (item.selected === selected && item.id.includes(filter)) {
 				items.push(item)
 				limit--
-				if (limit === 0) return { items, cursor }
+				if (limit === 0) return { items, skip }
 			}
 		}
 
 		return { items }
 	}
 
-	getSelected(filter: string, cursor: number, limit: number) {
-		return this.getCursoredItems(filter, cursor, limit, true)
+	getSelected(filter: string, skip: number, limit: number) {
+		return this.getSkippedItems(filter, skip, limit, true)
 	}
 
-	getNonSelected(filter: string, cursor: number, limit: number) {
-		return this.getCursoredItems(filter, cursor, limit, false)
+	getNonSelected(filter: string, skip: number, limit: number) {
+		return this.getSkippedItems(filter, skip, limit, false)
 	}
 
 	flushAdditions() {
@@ -164,16 +164,16 @@ const validateLimit = (limit: unknown) => {
 app.get('/api/items/selected', (req, res) => {
 	const filter = String(req.query.filter) || ''
 	const limit = validateLimit(req.query.limit)
-	const cursor = parseInt(req.query.cursor as string) || 0
-	const result = store.getSelected(filter, cursor, limit)
+	const skip = parseInt(req.query.skip as string) || 0
+	const result = store.getSelected(filter, skip, limit)
 	res.json(result)
 })
 
 app.get('/api/items/non-selected', (req, res) => {
 	const filter = String(req.query.filter) || ''
 	const limit = parseInt(req.query.limit as string) || 20
-	const cursor = parseInt(req.query.cursor as string) || 0
-	const result = store.getNonSelected(filter, cursor, limit)
+	const skip = parseInt(req.query.skip as string) || 0
+	const result = store.getNonSelected(filter, skip, limit)
 	res.json(result)
 })
 
