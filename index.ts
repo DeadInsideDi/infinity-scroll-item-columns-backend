@@ -1,6 +1,6 @@
 import cors from 'cors'
 import express from 'express'
-import { store } from './store'
+import { store } from './store.ts'
 
 const app = express()
 const PORT = 3001

@@ -2,7 +2,9 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "commonjs",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "esModuleInterop": true
   }
 }
