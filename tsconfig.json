@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
     "target": "ESNext",
     "lib": [
       "ESNext.Collection",
       "DOM",
       "DOM.Iterable"
     ]
-  }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
