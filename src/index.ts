@@ -64,6 +64,10 @@ app.put('/api/items/update-order', (req, res) => {
 	res.json({ item })
 })
 
+app.get('/', (req, res) => {
+	res.send('Hello World!')
+})
+
 const updateInterval = setInterval(() => store.flushUpdates(), 1000)
 const addInterval = setInterval(() => store.flushAdditions(), 10000)
 
@@ -81,3 +85,5 @@ const shutdown = () => {
 
 process.on('SIGTERM', shutdown)
 process.on('SIGINT', shutdown)
+
+export default app

@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "dist",
     "rootDir": "./src",
     "target": "ESNext",
+    "esModuleInterop": true,
+    "module": "CommonJS",
     "lib": [
       "ESNext.Collection",
       "DOM",
