@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": ".",
     "target": "ESNext",
-    "esModuleInterop": true,
-    "module": "CommonJS"
+    "module": "CommonJS",
+    "esModuleInterop": true
   }
 }
