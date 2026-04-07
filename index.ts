@@ -16,7 +16,7 @@ class MemoryStore {
 	private updateBuffer: Map<Item['id'], ItemUpdates> = new Map()
 
 	constructor() {
-		for (let i = 1; i <= 100; i++) {
+		for (let i = 1; i <= 1_000_000; i++) {
 			const id = i.toString()
 			this.setItem(id, this.defaultItem(id))
 		}
