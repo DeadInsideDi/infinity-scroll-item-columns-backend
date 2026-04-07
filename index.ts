@@ -60,21 +60,24 @@ class MemoryStore {
 		limit: number,
 		selected: boolean,
 	) {
-		let slicedItems = this.getAllItems().slice(skip)
-		if (selected) slicedItems = this.getSortOrderedItems(slicedItems)
+		let items = this.getAllItems()
+		if (selected) items = this.getSortOrderedItems(items)
 
-		const items = []
+		const filteredItems = []
+		let currentIndex = skip
 
-		for (const item of slicedItems) {
-			skip++
+		for (const item of items.slice(skip)) {
+			currentIndex++
+
 			if (item.selected === selected && item.id.includes(filter)) {
-				items.push(item)
-				limit--
-				if (limit === 0) return { items, skip }
+				filteredItems.push(item)
+
+				if (filteredItems.length === limit)
+					return { items: filteredItems, skip: currentIndex }
 			}
 		}
 
-		return { items }
+		return { items: filteredItems }
 	}
 
 	getSelected(filter: string, skip: number, limit: number) {
